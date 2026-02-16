@@ -1,8 +1,9 @@
 :root {
-    --primary-color: #FF9900; /* Naranja Amazon */
+    --primary-color: #FF9900;
     --dark-color: #232f3e;
     --bg-color: #f6f6f6;
     --text-color: #333;
+    --amazon-btn-shadow: #cc7a00;
 }
 
 body {
@@ -17,7 +18,8 @@ body {
 header {
     text-align: center;
     padding: 40px 20px;
-    background: white;
+    background: #f3c47e;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .profile-pic {
@@ -25,7 +27,7 @@ header {
     margin-bottom: 10px;
 }
 
-h1 { margin: 0; font-size: 1.5rem; }
+h1 { margin: 0; font-size: 1.5rem; color: var(--dark-color); }
 
 .container {
     max-width: 500px;
@@ -40,7 +42,7 @@ h1 { margin: 0; font-size: 1.5rem; }
     margin-bottom: 30px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     position: relative;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
 }
 
 .card:active { transform: scale(0.98); }
@@ -51,35 +53,72 @@ h1 { margin: 0; font-size: 1.5rem; }
     right: 10px;
     background: #e47911;
     color: white;
-    padding: 5px 10px;
+    padding: 5px 12px;
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: bold;
+    z-index: 1;
 }
 
-img { width: 100%; height: auto; display: block; }
+img { width: 100%; height: auto; display: block; border-bottom: 1px solid #eee; }
 
-.card-content { padding: 20px; text-align: center; }
+.card-content { padding: 25px; text-align: center; }
 
-h2 { font-size: 1.2rem; margin-top: 0; }
+h2 { font-size: 1.3rem; margin-top: 0; color: var(--dark-color); }
 
 .btn-amazon {
     display: block;
     background-color: var(--primary-color);
     color: black;
     text-decoration: none;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 16px;
+    border-radius: 12px;
     font-weight: bold;
     font-size: 1.1rem;
-    box-shadow: 0 4px 0 #cc7a00;
+    box-shadow: 0 4px 0 var(--amazon-btn-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.btn-amazon::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    animation: shine 3.5s infinite;
+}
+
+@keyframes shine {
+    0% { left: -60%; }
+    15% { left: 120%; }
+    100% { left: 120%; }
+}
+
+.btn-amazon:hover {
+    background-color: #ffb84d;
+    transform: translateY(-2px);
+}
+
+.btn-amazon:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--amazon-btn-shadow);
 }
 
 footer {
     text-align: center;
     padding: 40px 20px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #888;
 }
 
-.disclaimer { font-style: italic; margin-top: 10px; }
+.disclaimer { 
+    font-style: italic; 
+    margin-top: 12px; 
+    padding: 0 20px;
+    line-height: 1.4;
+}
